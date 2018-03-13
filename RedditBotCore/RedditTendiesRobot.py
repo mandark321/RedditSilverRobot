@@ -8,13 +8,14 @@ from Structures.Queue import Queue
 
 rsr = praw.Reddit(client_id='client_id',
                   client_secret='client_secret',
-                  user_agent='raspberrypi:com.rudypikulik.redditsilverrobot:v1.6.1',
+                  user_agent='raspberrypi:com.rudypikulik.reddittendiesrobot:v1.6.1',
                   username=‘**********’,
                   password=‘**********’)
 
 file = 'RSRQueue.p'
-command = '!redditsilver'
+command = ['!goodboy', '!goodgirl', '!reddittendies', '!tendies']
 banned_subs = ["slayone"]
+allowed_subs = ["RedditTendiesBot"]
 
 def validate_comment(comment):
     # Decides whether or not to reply to a given comment.
@@ -30,7 +31,7 @@ def validate_comment(comment):
         if queue.contains(comment.id) or comment.id in [x[0] for x in data]:
             return False
         # We wrote the comment, don't loop.
-        if comment.author.name is "RedditSilverRobot":
+        if comment.author.name is "RedditTendiesRobot":
             _register_comment(comment, "Cannot respond to self.")
             return False
         # Parent comment was deleted, don't respond.
@@ -44,7 +45,7 @@ def validate_comment(comment):
 
         comment.refresh()
         for child_comment in comment.replies:
-            if child_comment.author.name == "RedditSilverRobot":
+            if child_comment.author.name == "RedditTendiesRobot":
                 _register_comment(comment, "Already replied to this comment. Will not do it again.")
                 return False
         return True
@@ -130,12 +131,12 @@ def _make_message(comment):
         s = ""
     else:
         s = "s"
-    message = "[**Here's your Reddit Silver, " + get_receiver(comment)
-    message += "!**](http://i.imgur.com/x0jw93q.png \"Reddit Silver\") \n\n"
-    message += "/u/" + get_receiver(comment) + " has received silver " + str(silver_count)
+    message = "[**Here's your Reddit Tendies, " + get_receiver(comment)
+    message += "!**](http://i.imgur.com/x0jw93q.png \"Reddit Tendies\") \n\n"
+    message += "/u/" + get_receiver(comment) + " has received tendies " + str(silver_count)
     message += " time%s. (given by /u/" % s
     message += comment.author.name + ") "
-    message += "__[info](http://reddit.com/r/RedditSilverRobot)__" + comment.subreddit.display_name
+    message += "__[info](http://reddit.com/r/RedditTendiesRobot)__" + comment.subreddit.display_name
     return message
 
 if __name__ == '__main__':
