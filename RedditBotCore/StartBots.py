@@ -4,14 +4,14 @@ import praw
 import pickle
 import time
 from Structures.Queue import Queue
-import RedditSilverRobot
+import RedditTendiesRobot
 from datetime import datetime
 
 print("Starting up the bots!")
 
 reddit = praw.Reddit(client_id='client_id',
                   client_secret='client_secret',
-                  user_agent='raspberrypi:com.rudypikulik.redditsilverrobot:v1.1.1',
+                  user_agent='raspberrypi:com.rudypikulik.reddittendiesrobot:v1.1.1',
                   username=‘**********’,
                   password=‘**********’)
 
@@ -20,7 +20,7 @@ reddit = praw.Reddit(client_id='client_id',
 sub = reddit.subreddit("all")
 
 
-bots = [RedditSilverRobot]
+bots = [RedditTendiesRobot]
 
 
 def start_stream():
