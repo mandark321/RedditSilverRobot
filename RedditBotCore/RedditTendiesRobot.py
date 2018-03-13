@@ -6,8 +6,8 @@ import time
 from Structures.Queue import Queue
 
 
-rsr = praw.Reddit(client_id='client_id',
-                  client_secret='client_secret',
+rsr = praw.Reddit(client_id='RedditTendiesBot',
+                  client_secret='	PQ7YGKSW2zUxcv731bOMfzsGRwc',
                   user_agent='raspberrypi:com.rudypikulik.reddittendiesrobot:v1.6.1',
                   username=‘**********’,
                   password=‘**********’)
@@ -41,6 +41,10 @@ def validate_comment(comment):
         # We've blacklisted this sub, don't respond.
         if comment.subreddit.display_name.lower() in banned_subs:
             _register_comment(comment, "Subreddit is blacklisted!")
+            return False
+    ##### Limits Tendies Bot to RedditTendiesBot Subreddit for testing purposes
+        if not comment.subreddit.display_name.lower() in allowed_subs:
+            _register_comment(comment, "Subreddit not on allowed list!")
             return False
 
         comment.refresh()
@@ -132,7 +136,7 @@ def _make_message(comment):
     else:
         s = "s"
     message = "[**Here's your Reddit Tendies, " + get_receiver(comment)
-    message += "!**](http://i.imgur.com/x0jw93q.png \"Reddit Tendies\") \n\n"
+    message += "!**](https://imgur.com/a/vSrtD/ \"Reddit Tendies\") \n\n"
     message += "/u/" + get_receiver(comment) + " has received tendies " + str(silver_count)
     message += " time%s. (given by /u/" % s
     message += comment.author.name + ") "
