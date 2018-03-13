@@ -7,7 +7,7 @@ from Structures.Queue import Queue
 
 
 rsr = praw.Reddit(client_id='RedditTendiesBot',
-                  client_secret='	PQ7YGKSW2zUxcv731bOMfzsGRwc',
+                  client_secret='client_secret',
                   user_agent='raspberrypi:com.rudypikulik.reddittendiesrobot:v1.6.1',
                   username=‘**********’,
                   password=‘**********’)
